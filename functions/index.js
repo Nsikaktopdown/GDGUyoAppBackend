@@ -68,6 +68,7 @@ const viewing_party_schedules_data = {
       },
     "-schedule-3": {
       "id": "-schedule-3",
+      "time": " 10:00 AM",
         "title": "Web CodeLab",
         "duration": "2 hours",
         "type": "Codelabs",
@@ -152,7 +153,7 @@ const viewing_party_schedules_data = {
         "description": " The moment we will showcase what we've build so far during the codelab session."
       
           },
-          "-schedule-10": {
+          "-schedule-91": {
             "id": "-schedule-10",
             "time": " 2:30 PM",
             "title": "Sefie/Group Photography",
@@ -163,11 +164,150 @@ const viewing_party_schedules_data = {
         "description": "Photo with friends and The GDG Team"
           }
   }
+
+  const schedules_data_2 = {
+    "-schedule-1": {
+      "id": "-schedule-1",
+      "time": " 8:00 AM",
+      "title": "Check-in & Breakfast",
+      "duration": "2 hours",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "Attendees Check-in, swag pickup and breakfast toast"
+
+    },
+    "-schedule-2": {
+      "id": "-schedule-2",
+      "time": " 10:00 AM",
+      "title": "Welcome Remark",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "Welcome address by GDG Uyo lead and Co-organizers."
+
+    },
+    "-schedule-3": {
+      "id": "-schedule-3",
+      "time": " 10:25 AM",
+      "title": "What is New in Android",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "In this session, we will get an overview of the latest features in Android announced by Google at I/0 this year."
+
+    },
+    "-schedule-4": {
+      "id": "-schedule-4",
+      "time": " 10:50 AM",
+      "title": "Exploring Cloud Firestore with VueJs",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "In this session, we will walk you through Firebase Cloud Firestore features and how it works with VueJs for Web developers."
+
+    },
+    "-schedule-5": {
+      "id": "-schedule-5",
+      "time": " 11:15 AM",
+      "title": "Building Secure Web Apps Using Google Authenticator",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "In this session, we are going to learn how to add two factor authentication which strengthens access security by requiring two methods to verify user identity before logging user to our app"
+
+    },
+    "-schedule-6": {
+      "id": "-schedule-6",
+      "time": " 11:40 AM",
+      "title": "Kahoot Game",
+      "duration": "30 mins",
+      "type": "Game",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "It will be game time for us all, get ready"
+
+    },
+    "-schedule-7": {
+      "id": "-schedule-7",
+      "time": " 12:10 AM",
+      "title": "Getting Started Action on Google",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "In this session, we will learn how to build your google assistance using Actions on Google"
+
+    },
+    "-schedule-8": {
+      "id": "-schedule-8",
+      "time": " 12:35 AM",
+      "title": "Google Analytics for Digital Marketing",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "In this session, we will learn how to use Google Analytics to measure, scale  and  create good marketing strategies with analytical data."
+
+    },
+    "-schedule-9": {
+      "id": "-schedule-9",
+      "time": " 1:05 AM",
+      "title": "What is new in JavaScript",
+      "duration": "25 mins",
+      "type": "General",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "In this session, we will cover the latest features in JavaScript"
+
+    },
+    "-schedule-91": {
+      "id": "-schedule-91",
+      "time": " 1:30 AM",
+      "title": "Music & Seifies & Lunch",
+      "duration": "30 mins",
+      "type": "Lunch | Break",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": " Lunch time and selfies with friends"
+
+    },
+    "-schedule-92": {
+      "id": "-schedule-92",
+      "time": " 2:00 AM",
+      "title": "Panel Session",
+      "duration": "40 mins",
+      "type": "Panel",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "Lunch time and selfies with friends"
+    },
+
+    "-schedule-93": {
+      "id": "-schedule-93",
+      "time": " 2:40 AM",
+      "title": "Group Photograph",
+      "duration": "30 mins",
+      "type": "Panel",
+      "hasSeat": false,
+      "date": "Sat. May 18",
+      "description": "Group Photograph with Leads and Attendees"
+
+    }
+
+  }
 exports.insertScheduleDB = functions.https.onRequest((req, res) => {
     const text = req.query.text;
     admin.database().ref('/schedules/day1').set(schedules_data).then(snapshot => {
         res.redirect(303, snapshot.ref);
     })
+    admin.database().ref('/schedules/day2').set(schedules_data_2).then(snapshot => {
+      res.redirect(303, snapshot.ref);
+  })
     admin.database().ref('/schedules/viewingParty').set(viewing_party_schedules_data).then(snapshot => {
       res.redirect(303, snapshot.ref);
   })
@@ -182,8 +322,8 @@ exports.pushNotification = functions.https.onRequest((req, res) => {
 // Create a notification
   const payload = {
       notification: {
-          title: "GDG Uyo",
-          body: "Test Notification",
+          title: "I/O Extended 2019 Uyo",
+          body: " It's 3 Days to our I/O Extended event. We can't wait to have you. 🎈🎈🎈",
           sound: "default"
       },
   };
@@ -211,7 +351,8 @@ exports.chatPushNotification = functions.database.ref('/messages/{pushId}').onWr
   if(message.imageUrl != "null") {
     message.message = "Added a photo!";
   }
-       const payload = {notification: {
+       const payload = {
+         notification: {
            title:`Chat Room`,
            body: `${message.senderName}: ${message.message}`,
            tag: `${message.uuid}`
